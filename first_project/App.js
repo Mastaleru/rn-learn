@@ -1,7 +1,7 @@
 import 'react-native-get-random-values';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
-import HSPCrypto from "./hsp-crypto-bundle";
+import HSPCrypto from "hsp-crypto";
 
 export default function App() {
 
