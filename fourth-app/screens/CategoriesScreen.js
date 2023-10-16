@@ -2,11 +2,7 @@ import {CATEGORIES} from "../data/dummy-data";
 import Category from "../components/Category";
 import {FlatList, StyleSheet, View,useWindowDimensions} from "react-native";
 
-
-
 export default function CategoriesScreen({navigation}) {
-
-
 
     const categoryRenderer = (itemData)  => {
         return <Category

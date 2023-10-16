@@ -7,14 +7,24 @@ export default function MealsOverviewScreen({route}){
 
     const meals = MEALS.filter((meal=>meal.categoryIds.includes(categoryId)));
 
-    function renderMealItem(itemData){
+    function renderMealItem({item}){
+
+        const mealItemProps = {
+            title:item.title,
+            imageUrl:item.imageUrl,
+            duration:item.duration,
+            affordability:item.affordability,
+            complexity:item.complexity
+        }
+
         return (
-           <Meal title={itemData.item.title}/>
+           <Meal
+               {...mealItemProps}
+           />
         )
     }
 
     return <View styles={styles.container}>
-        <Text>Meals Overview Screen {categoryId}</Text>
         <FlatList
             data={meals}
             renderItem={renderMealItem}
