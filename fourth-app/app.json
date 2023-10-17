@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "RNCourse",
-    "slug": "RNCourse",
+    "name": "fourth-app",
+    "slug": "fourth-app",
     "version": "1.0.0",
     "orientation": "default",
     "icon": "./assets/icon.png",
