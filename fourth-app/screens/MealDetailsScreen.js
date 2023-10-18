@@ -1,26 +1,30 @@
-import {useLayoutEffect, useState} from "react";
+import {useLayoutEffect, useContext} from "react";
 import {View, Text, Image, StyleSheet, ScrollView} from "react-native";
 import {MEALS} from "../data/dummy-data";
 import List from "../components/List";
 import Favorite from "../components/Favorite";
+import {FavoritesContext} from "../store/context/favorites-context";
 
 export default function MealDetailsScreen({route, navigation}) {
 
+    const favoriteMealsContext = useContext(FavoritesContext);
     const mealId = route.params.mealId;
     const meal = MEALS.find(meal => meal.id === mealId);
+    const isFavorited = favoriteMealsContext.isFavorite(mealId);
 
-
-    const setFavorite = () =>{
-        meal.isFavorite = !meal.isFavorite;
-        setIsFavorited((previousValue)=>!previousValue);
+    const toggleFavorite = () =>{
+        if(favoriteMealsContext.isFavorite(mealId)){
+            favoriteMealsContext.removeFavorite(mealId);
+        }
+        else{
+            favoriteMealsContext.addFavorite(mealId);
+        }
     }
-
-    const [isFavorited, setIsFavorited] = useState(meal.isFavorite);
 
     useLayoutEffect(() => {
         navigation.setOptions({
             title: meal.title,
-            headerRight:()=><Favorite isFavorited={isFavorited} onPress={setFavorite}/>
+            headerRight:()=><Favorite isFavorited={isFavorited} onPress={toggleFavorite}/>
         });
     }, [navigation, isFavorited])
 
